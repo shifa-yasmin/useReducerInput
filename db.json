@@ -1,0 +1,36 @@
+{
+  "user": [
+    
+    {
+      "name": "yasmin",
+      "place": "koramkode",
+      "id": "Z57vCtpnRB8"
+    },
+    {
+      "name": "shifa yasmin p",
+      "place": "karinkallathani",
+      "id": "7cVr-BE2cCs"
+    },
+    {
+      "name": "safa yasmin p",
+      "place": "karinkallathani",
+      "id": "HTmglv6kD5w"
+    },
+    {
+      "name": "shahma",
+      "place": "karinkallathani",
+      "id": "cuIkzwyZsl4"
+    },
+    {
+      "name": "sabira",
+      "place": "karinkallathani",
+      "id": "iKH9U3daIBk"
+    },
+    {
+      "name": "bishr",
+      "place": "karinkallathani",
+      "id": "3Pob0pb1keo"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
