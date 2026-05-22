@@ -1,30 +1,43 @@
-import { useEffect, useState} from 'react'
-import axios from 'axios'
+import  { useReducer ,useState} from 'react'
+
+function Reducer(state,action){
+  if(action.type==="input"){
+    return{
+      ...state,name:action.payload
+    }
+  }
+  if(action.type==="email"){
+    return{
+    ...state,email:action.payload
+    }
+  }
+  return state;
+}
+
 const App = () => {
-  const [show,setShow]=useState([])
-  const [search,setSearch]=useState("")
-  useEffect(()=>{
-    axios.get("http://localhost:3000/user")
-    .then(res=>{
-      console.log(res)
-      setShow(res.data)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-  },[])
-
-   const filterData=show.filter((item)=>
-    item.name.toLowerCase().includes(search.toLowerCase())
-   )
-
+  const [show,setShow]=useState(null)
+   const [state,dispatch]=useReducer(Reducer,{
+    name:"",
+    email:""
+   });
+   const handle=()=>{
+    setShow(state);
+   }
   return (
     <div>
-      <input value={search} placeholder="enter value" onChange={(e)=>setSearch(e.target.value)}/>
-      {filterData.map((n,index)=>(
-        <h1 key={index}>{n.name}</h1>
-      ))}
+    <input value={state.name} placeholder='enter name' onChange={(e)=>dispatch({type:"input",payload:e.target.value})}/>
+    <br/><br/>
+    <input value ={state.email} placeholder='enter email' onChange={(e)=>dispatch({type:"email",payload:e.target.value})}/>
+    <br/><br/>
+    <button onClick={handle}>click</button>
+     {show&&(
+      <div>
+         <h1>{state.name}</h1>
+         <h4>{state.email}</h4>
+         </div>
+    )}
     </div>
+   
   )
 }
 
