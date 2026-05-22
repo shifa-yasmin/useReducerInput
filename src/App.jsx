@@ -1,43 +1,23 @@
-import  { useReducer ,useState} from 'react'
-
-function Reducer(state,action){
-  if(action.type==="input"){
-    return{
-      ...state,name:action.payload
-    }
-  }
-  if(action.type==="email"){
-    return{
-    ...state,email:action.payload
-    }
-  }
-  return state;
-}
+import {useState} from 'react'
 
 const App = () => {
-  const [show,setShow]=useState(null)
-   const [state,dispatch]=useReducer(Reducer,{
-    name:"",
-    email:""
-   });
-   const handle=()=>{
-    setShow(state);
-   }
+  const [show,setShow]=useState(false)
+  const names=["shifa","safa","shahma","ashmil"];
+
+  const handle=()=>{
+    setShow((prev)=>!prev)
+  }
   return (
     <div>
-    <input value={state.name} placeholder='enter name' onChange={(e)=>dispatch({type:"input",payload:e.target.value})}/>
-    <br/><br/>
-    <input value ={state.email} placeholder='enter email' onChange={(e)=>dispatch({type:"email",payload:e.target.value})}/>
-    <br/><br/>
-    <button onClick={handle}>click</button>
-     {show&&(
-      <div>
-         <h1>{state.name}</h1>
-         <h4>{state.email}</h4>
-         </div>
-    )}
+      <button onClick={handle}>{show?"close":"open"}</button>
+      {show&&(
+        <ul>
+          {names.map((n,index)=>(
+            <li key={index}>{n}</li>
+          ))}
+        </ul>
+      )}
     </div>
-   
   )
 }
 
